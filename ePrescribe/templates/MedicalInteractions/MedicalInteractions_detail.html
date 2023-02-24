@@ -1,0 +1,11 @@
+<h3>Medical Interactions</h3>
+
+<p>{{ object.patient_id }}</p>
+<p>{{ object.medicine_id }}</p>
+
+<a href="{% url 'med-int-delete' object.id %}">
+    <button >delete</button>
+</a>
+<a href="{% url 'med-int-update' object.id %}">
+    <button >update</button>
+</a>

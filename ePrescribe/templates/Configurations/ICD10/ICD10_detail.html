@@ -1,0 +1,11 @@
+<h3>Medical Conditions </h3>
+
+<p>{{ object.ICD10_code }}</p>
+<p>{{ object.diagnosis }}</p>
+
+<a href="{% url 'ICD10-delete' object.id %}">
+    <button >delete</button>
+</a>
+<a href="{% url 'ICD10-update' object.id %}">
+    <button >update</button>
+</a>

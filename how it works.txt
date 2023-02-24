@@ -1,0 +1,113 @@
+Elecronic Pharmacy developed with Django, Python and sqlite3.
+
+How it works?
+ Doctors will log onto the system to create medication 
+prescriptions for patients. When adding medication onto the prescription the system will 
+automatically check for contra-indications related to any conditions the patient may have, as well as 
+for interactions with medication previously prescribed to the patient. The prescription will be stored 
+online and the patient may then go to any pharmacy in order to fill the prescription by giving his ID 
+number to the pharmacist. The pharmacist will log onto the system to pull the prescription and 
+dispense the medication.
+The system will have the following users:
+1. ADMIN USER
+The admin user will mainly maintain records in the database such as:
+• Medical Practice Records:
+o Practice Name
+o Practice Address
+o Practice Contact Number
+o Practice E-mail Address
+o Practice Number
+• Doctor Records:
+o Doctor Name 
+o Doctor Surname
+o Doctor Contact Number
+o Doctor E-mail Address
+o Highest Qualification
+o Practice Number (you may assume that a doctor will only work at one practice) 
+o Health Council Registration Number
+• Pharmacy Records:
+o Pharmacy Name
+o Pharmacy Address
+o Pharmacy Contact Number
+o Pharmacy E-mail Address
+o Pharmacy License Number
+o Pharmacy Responsible Pharmacist (one per pharmacy)
+• Pharmacist Records:
+o Pharmacist Name
+o Pharmacist Surname
+o Pharmacist Contact Number
+o Pharmacist E-mail Address
+o Pharmacist Registration Number
+o Pharmacist Pharmacy (you may assume that a pharmacist will only work at one 
+pharmacy)
+• Condition Diagnosis Records (ICD-10)
+29 April 2022
+Page 2 of 3
+• Active Ingredient Records
+• Medication Records:
+o Medication Name
+o Dosage Form (e.g. capsule, tablet, chewable, syrup, suppository, etc.)
+o Active Ingredient(s)
+o Active Ingredient(s) Strength
+o Schedule
+• Contra-Indication Records
+• Medication Interaction Records
+2. PATIENTS
+Patients will register themselves onto the system. The following information should be captured when 
+registering:
+o Patient ID Number
+o Patient Name
+o Patient Surname
+o Patient Address
+o Patient Contact Number
+o Patient E-Mail Address
+o Patient Date of Birth
+The patient can view prescriptions that has been loaded on the system for them, as well as the status 
+of each item on the prescription, for example prescribed or dispensed (also at which pharmacy it was 
+dispensed). For repeat prescriptions, the patient should be able to view the number of repeats left. 
+The FIRST time that a patient visits a doctor (any doctor) after registering on the system the doctor 
+will see an alert that asks him to capture the patient’s medical history. The doctor will have to capture 
+the following during that first visit:
+o Patient’s chronic medical history: For example a list of chronic diseases – refer to the 
+Condition Diagnosis Table that the Admin user will maintain. The doctor would thus, 
+for example, capture that the patient was diagnosed with hypertension in April 2020 
+and high cholesterol in June 2021. 
+o Current chronic medication that the patient is taking.
+o Any known patient drug allergies.
+3. DOCTOR
+A doctor will load prescriptions onto the system, as well as record chronic and acute diagnosis of 
+patients. When loading a prescription the following information should appear on the prescription:
+• Name, surname, qualification health council registration number, contact number and 
+address of prescribing doctor.
+• Name, surname, and ID number of patient.
+• The date the prescription was issued.
+• Name, dosage form, and strength of the medication.
+• The quantity of medication prescribed. 
+29 April 2022
+Page 3 of 3
+• Instructions for the administration of the dosage and frequency of administration.
+• Number of times the prescribed medication may be repeated. Keep in mind that there might 
+be several medications prescribed on one prescription and only some of them may be 
+repeated.
+As the doctor adds medication to the prescription the system must check for any contra-indications 
+related to patient diagnosis, as well as medication interactions. Appropriate alerts should be displayed 
+to the doctor if necessary. If the doctor chooses to ignore an alert he has to provide a reason that 
+should be stored in the database.
+4. PHARMACIST
+When a patient arrives at a pharmacy he will give his ID number to the pharmacist. The pharmacist 
+will then be able to view all active prescriptions for the patient on the system and select prescription(s) 
+to dispense to the patient. If the patient tries to fill a repeat prescription within 20 days of a previous 
+refill an alert should be displayed to the pharmacist. The pharmacist may choose to ignore the alert 
+and still dispense the medication. If the pharmacist chooses to ignore an alert he has to provide a 
+reason that should be stored in the database.
+When the pharmacist selects medication to dispense the system should check for any contraindications related to patient diagnosis, as well as medication interactions, and patient medication 
+allergies. Appropriate alerts should be displayed to the pharmacist if necessary. If the pharmacist 
+chooses to ignore an alert he has to provide a reason that should be stored in the database. If the 
+pharmacists suspects that there is a mistake on the prescription he may reject the entire prescription, 
+or a specific item on the prescription. The pharmacist should add a note indicating his reason for 
+rejection. The doctor should then be able to view the note and amend the prescription if necessary. 
+When dispensing medication the dispensing pharmacy, dispensing pharmacist, dispensing date must 
+be recorded. It may happen that some of the medication on the prescription is dispensed and some 
+not. This may happen in cases where the medication is out of stock at that particular pharmacy or if 
+the patient still has stock at home.
+All of the above users must log into the system with their username and password.

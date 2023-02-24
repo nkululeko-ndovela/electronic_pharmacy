@@ -1,0 +1,9 @@
+<h3>this is the details page of the medical practice for {{ object.name }}</h3>
+
+
+<a href="{% url 'medprac-delete' object.id %}">
+    <button >delete</button>
+</a>
+<a href="{% url 'medprac-update' object.id %}">
+    <button >update</button>
+</a>

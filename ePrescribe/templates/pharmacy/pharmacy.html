@@ -1,0 +1,53 @@
+{% extends 'ePrescribe\components\header.html' %}
+
+{% block body %}
+        {% if user.is_admin or user.is_doctor %}
+        <a href="{% url 'medprac-list' %}"><button class="btn btn-success">Medical Practice</button></a>
+        {% endif %}
+        {% if user.is_admin %}
+        <a href="{% url 'pharmacy-create' %}"><button class="btn btn-primary">Add Pharmacy</button></a>
+        {% endif %}
+        {% if user.is_pharmacist %}
+        <a href="{% url 'pharmacy-list' %}"><button class="btn btn-primary">Pharmacy</button></a>
+        {% endif %}
+
+    <div class="container">
+    {% for msg in messages %}
+        <div class="bg-success text-white">
+            <p class="text-center box-sizing">{{msg}}</p>
+        </div>
+        <br><br>
+    {% endfor %}
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <th>Name</th>
+        <th>Address</th>
+        <th>Contact Number</th>
+        <th>Email</th>
+        <th>License Number</th>
+        <th>Pharmacist Name</th>
+          {% if user.is_admin %}
+        <th>Action</th>
+        {% endif %}
+        <tbody>
+            {% for p in all_pharmacy %}
+                <tr>
+                    <td>{{p.name}}</td>
+                    <td>{{p.address}}<br>{{p.city}}<br>{{p.suburb}}<br>{{p.postal_code}}<br>{{p.province}}</td>
+                    <td>{{p.contact_number}}</td>
+                    <td>{{p.email}}</td>
+                    <td>{{p.license_number}}</td>
+                    <td>{{p.pharmacist_name}}</td>
+                    {% if user.is_admin %}
+                    <td>
+                        <a href="{% url 'pharmacy-update' p.id %}" class="btn btn-info">Edit</a>
+                        <a href="{% url 'pharmacy-delete' p.id %}" class="btn btn-danger">Delete</a>
+                    </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    </div>
+{% endblock %}

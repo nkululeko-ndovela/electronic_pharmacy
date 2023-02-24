@@ -1,0 +1,20 @@
+{% extends 'ePrescribe\components\header.html' %}
+{% block title %}Rejected prescriptions{% endblock %}
+
+
+{% block body %}
+
+    <h2>Rejected prescriptions</h2>
+
+    {% for rej in rejected %}
+    <div id="spacing">
+        <div class="card">
+            <div class="card-body">
+                <p>{{rej.medical_record.patient_id}} {{rej.medical_record.patient_id.surname}}</p>
+                <a href={% url "reject-detail" rej.id %} class="btn btn-outline-primary">View Details</a>
+            </div>
+        </div>
+    </div>
+        {% endfor %}
+
+{% endblock %}

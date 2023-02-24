@@ -1,0 +1,26 @@
+{% extends 'ePrescribe\components\header.html' %}
+{% block title %}Medication Dispensed{% endblock %}
+
+
+{% block body %}
+
+    {% if object.medical_record.active_ingridients == object.contra_indication.medicine_id %}
+
+        <p>There is a Medical Contra indication in the patient's prescription!!</p>
+
+    {% else %}
+        <h4>Medication Dispensed</h4>
+
+        <p>Active ingridients: {{ object.medical_record.active_ingridients }}</p>
+
+        <p>Available Contra indication: {{ object.contra_indication.exemption }}</p>
+
+        <p>Dispensed at: {{ object.pharmacy }} </p>
+        <p>pharmacist's Name: {{ object.pharmacist }}</p>
+
+        <a href="{%  url 'med-rec-list' %}">
+            <button class="btn btn-primary">Back to prescriptions</button>
+        </a>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'ePrescribe\components\header.html' %}
+
+
+{% block body %}
+    {% for msg in messages %}
+        <div class="bg-success text-white">
+            <p class="text-center box-sizing">{{msg}}</p>
+        </div>
+        <br><br>
+    {% endfor %}
+    <div class="patient_action">
+        <a href="{% url 'patient-list' %}"><button class="btn btn-primary">Patient</button></a>
+      <a href="{% url 'medhist-list' %}" class="btn btn-success"> Medical History</a>
+        <a href="{% url 'med-rec-list' %}" class="btn btn-success"> Medical Record</a>
+        <a href="{% url 'prescription-list' %}" class="btn btn-success"> Prescription</a>
+        <a href="{% url 'med-int-list' %}" class="btn btn-success"> Medical Interactions</a>
+        <a href="{% url 'cont-ind-list' %}" class="btn btn-success"> Medical Contradictions</a>
+    </div>
+    <br>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Id Number</th>
+        <th>Address</th>
+        <th>Contact Number</th>
+        <th>Email</th>
+        <th>Date of Birth</th>
+        <th>Gender</th>
+        <th>Action</th>
+
+        <tbody>
+                <tr>
+                    <td>{{object.name}}</td>
+                    <td>{{object.surname}}</td>
+                    <td>{{object.id_number}}</td>
+                    <td>{{patient.address}}<br>{{patient.city}}<br>{{patient.suburb}}<br>{{patient.postal_code}}<br>{{patient.province}}</td>
+                    <td>{{object.contact_number}}</td>
+                    <td>{{object.email}}</td>
+                    <td>{{object.dob}}</td>
+                    <td>{{object.gender}}</td>
+                    <td>
+                        <a href="{% url 'patient-update' object.id %}" class="btn btn-info">Update</a>
+                        <a href="{% url 'patient-delete' object.id %}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+{% endblock %}
+
+
+{% if user.is_pharmacist %}
+
+    <a href="{% url 'medhist-detail' object.name.id %}">view Medical History</a>
+
+{% elif user.is_admin or user.is_doctor %}
+    
+    <div>
+        <a href="{% url 'med-rec-create' %}"><button>Load prescription</button></a><br>
+    </div>
+
+
+
+    <a href="{% url 'patient-delete' object.id %}">
+        <button >delete</button>
+    </a>
+    <a href="{% url 'patient-update' object.id %}">
+        <button >update</button>
+    </a> 
+
+{% endif %}

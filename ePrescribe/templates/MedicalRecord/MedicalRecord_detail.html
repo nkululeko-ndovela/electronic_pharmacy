@@ -1,0 +1,53 @@
+{% extends 'ePrescribe\components\header.html' %}
+{% block title %}{{ object.patient_id.name }}'s Records{% endblock %}
+
+
+{% block body %}
+
+<h3>{{ object.patient_id.name }}'s Records</h3>
+
+
+<h1>{{ object.patient_id.surname }}</h1>
+
+<p>Diagnosis : {{ object.disease_id }}</p>
+
+<p>Medicine name: {{ object.medication_name }}</p>
+<p>Active ingridients: {{ object.active_ingridients }}</p>
+
+<p>Dosage Form: {{ object.dosage_form }}</p>
+
+<p>strength: {{ object.strength }}{{ object.units }}</p>
+<p>Taken: {{ object.schedule }} times</p>
+
+<p>Prescribed by Doctor: {{ object.doctor }}</p>
+
+
+    {% if object.is_rejected %}
+        <div>
+            <h5>Prescription rejected</h5>
+        </div>
+    {% elif object.is_dispensed %}
+        <div>
+            <h5>Prescription Dispensed</h5>
+        </div>
+    {% else %}
+
+        {% if user.is_admin or user.is_doctor %}
+            <a href="{% url 'med-rec-delete' object.id %}">
+                <button class="btn btn-danger">delete</button>
+            </a>
+            <a href="{% url 'med-rec-update' object.id %}">
+                <button class="btn btn-warning" >update</button>
+            </a>
+        {% elif user.is_pharmacist %}
+
+            <a href="{% url "dispense" object.id%}">
+                <button class="btn btn-info">dispense Medication</button>
+            </a>
+            <a href="{% url "reject" object.id %}">
+                <button class="btn btn-danger" >Reject prescription</button>
+            </a>
+        {% endif %}
+    {% endif %}
+
+    {% endblock %}

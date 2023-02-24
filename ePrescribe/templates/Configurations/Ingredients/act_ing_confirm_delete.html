@@ -1,0 +1,21 @@
+{% extends 'ePrescribe\components\header.html' %}
+
+{% block title %}Delete Active Ingredient{% endblock %}
+
+
+{% block body %}
+    <div >
+
+        <h4>Are you sure you want to delete "{{ object }}"?</h4>
+
+        <form method="post">{% csrf_token %}
+        
+
+            <button type="submit" class="btn btn-danger">yes, Delete</button>
+        </form>
+
+        <a href="{% url 'act-ing-list' %}">
+            <button class="btn btn-primary">cancel</button>
+        </a>
+    </div>
+{% endblock %}

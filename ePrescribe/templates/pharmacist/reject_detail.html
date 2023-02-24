@@ -1,0 +1,28 @@
+{% extends 'ePrescribe\components\header.html' %}
+{% block title %}Medication Rejected{% endblock %}
+
+
+{% block body %}
+    <h4>Prescription rejected</h4>
+    <p>Patient name: {{object.medical_record.patient_id}} {{object.medical_record.patient_id.surname}}</p>
+    <p>Pharmacist : {{object.pharmacist}}</P>
+    <p>Pharmacy : {{object.pharmacy}}</p>
+    <p>Reason: {{object.reason}}</p>
+    <p>status: Rejected</p>
+
+
+    {% if object.medical_record.active_ingridients == object.contra_indication.medicine_id %}
+
+        <p>There is a Medical Contra indication in the patient's prescription!!</p>
+
+    {% endif %}
+
+    <a href="{% url "med-rec-detail" object.medical_record.id%}">View Prescription</a><br>
+    
+    <div>
+        <a href="{%  url "med-rec-list" %}">
+            <button class="btn btn-primary">Back to prescriptions</button>
+        </a> 
+    </div>
+        
+{% endblock %}

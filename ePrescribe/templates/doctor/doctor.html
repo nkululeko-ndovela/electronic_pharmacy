@@ -1,0 +1,53 @@
+{% extends 'ePrescribe\components\header.html' %}
+
+{% block body %}
+    {% for msg in messages %}
+        <div class="bg-success text-white">
+            <p class="text-center box-sizing">{{msg}}</p>
+        </div>
+        <br><br>
+    {% endfor %}
+    <div class="doctor_action">
+        {% if user.is_admin %}
+        <a href="{% url 'doctor-create' %}"><button class="btn btn-success">Add Doctor</button></a>
+        {% endif %}
+    </div><br/>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Contact Number</th>
+        <th>Email</th>
+        <th>Qualification</th>
+        <th>Practice Number</th>
+        <th>Health Council</th>
+        <th>Username</th>
+        <th>Action</th>
+
+        <tbody>
+
+
+        {% for doc in all_doctors %}
+                <tr>
+                    <td>{{doc.name}}</td>
+                    <td>{{doc.surname}}</td>
+                    <td>{{doc.contact_number}}</td>
+                    <td>{{doc.email}}</td>
+                    <td>{{doc.qualification}}</td>
+                    <td>{{doc.practice_number}}</td>
+                    <td>{{doc.hc_reg_number}}</td>
+                    <td>{{doc.username}}</td>
+                    <td>
+                        <a href="{% url 'doctor-update' doc.id %}" class="btn btn-info">Edit</a>
+                        {% if user.is_admin %}
+                        <a href="{% url 'doctor-delete' doc.id %}" class="btn btn-danger">Delete</a>
+                        {% endif %}
+                    </td>
+                </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,10 @@
+<h2>Dispense Medication
+</h2>
+
+<form  method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button>Done</button>
+</form>

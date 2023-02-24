@@ -1,0 +1,25 @@
+
+{% extends 'ePrescribe\components\header.html' %}
+
+{% block title %}e-Prescribe{% endblock %}
+
+
+{% block body %}
+
+  
+  {% if user.is_authenticated %}
+
+    {% if user.is_admin %}
+      <p>Go to <a href="{% url 'patient-list' %}">admin page</a></p>
+    {% elif user.is_doctor %}
+      <p>Go to <a href="{% url 'doctor-list' %}">Medical Records</a></p>
+    {% elif user.is_pharmacist %}
+      <p>Go to <a href="{% url 'pharmacist-list' %}">Medical Records</a></p>
+    {% elif user.patient %}
+      <p>Go to <a href="{% url 'patient-list' %}">View Prescriptions</a></p>
+    {% endif %}
+
+  {% endif %}
+        
+      
+{% endblock%}

@@ -1,0 +1,17 @@
+<h3>{{ object.patient.name }}'s Medical History </h3>
+
+
+<p>{{ object.patient.surname }}</p>
+<p>{{ object.patient.drug_allergies }}</p>
+<p>{{ object.patient.chronic_med_hist }}</p>
+<p>{{ object.patient.current_chronic_med }}</p>
+<p>updated on:{{ object.patient.date }}</p>
+
+{% if user.is_doctor or user.is_admin %}
+<a href="{% url 'medhist-delete' object.id %}">
+    <button >delete</button>
+</a>
+<a href="{% url 'medhist-update' object.id %}">
+    <button >update</button>
+</a>
+{% endif %}

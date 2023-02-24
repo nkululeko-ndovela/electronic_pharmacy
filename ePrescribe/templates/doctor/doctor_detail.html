@@ -1,0 +1,27 @@
+{% extends 'ePrescribe\components\header.html' %}
+
+{% block title %}{{ object.name }}{% endblock %}
+
+
+{% block body %}
+
+    <h3>Doctor {{ object.name }} {{object.surname}}</h3>
+
+    <div>
+        <p>Contact Number: {{object.contact_number}}</p>
+        <p>Email Address: {{object.email}}</p>
+        <p>Qualification: {{object.qualification}}</p>
+        <p>reference: {{object.reference}}</p>
+        <p>hc_reg_number: {{object.hc_reg_number}}</p>
+    </div>
+
+    {% if user.is_admin %}
+        <a href="{% url 'doctor-delete' object.id %}">
+            <button class="btn btn-danger">delete</button>
+        </a>
+        <a href="{% url 'doctor-update' object.id %}">
+            <button class="btn btn-primary">update</button>
+        </a>
+    {% endif %}
+
+{% endblock %}

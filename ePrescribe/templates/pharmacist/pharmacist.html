@@ -1,0 +1,54 @@
+{% extends 'ePrescribe\components\header.html' %}
+
+
+{% block body %}
+
+<div class="container">
+    {% for msg in messages %}
+        <div class="bg-success text-white">
+            <p class="text-center box-sizing">{{msg}}</p>
+        </div>
+        <br><br>
+    {% endfor %}
+    <div class="pharmacist_action">
+        {% if user.is_admin %}
+        <a href="{% url 'pharmacist-create' %}" class="btn btn-primary"> Add Pharmacist</a>
+        {% endif %}
+    </div>
+    <br>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Contact Number</th>
+        <th>Email</th>
+        <th>Registration Number</th>
+        <th>Pharmacy Name</th>
+        <th>Username</th>
+        <th>Action</th>
+
+        <tbody>
+
+        {% for pharm in all_pharmacist %}
+            <tr>
+                <td>{{pharm.name}}</td>
+                <td>{{pharm.surname}}</td>
+                <td>{{pharm.contact_number}}</td>
+                <td>{{pharm.email}}</td>
+                <td>{{pharm.reg_number}}</td>
+                <td>{{pharm.pharmacy}}</td>
+                <td>{{pharm.username}}</td>
+                <td>
+                    <a href="{% url 'pharmacist-update' pharm.id %}" class="btn btn-info">Edit</a>
+                    {% if user.is_admin %}
+                    <a href="{% url 'pharmacist-delete' pharm.id %}" class="btn btn-danger">Delete</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+</div>
+
+{% endblock %}

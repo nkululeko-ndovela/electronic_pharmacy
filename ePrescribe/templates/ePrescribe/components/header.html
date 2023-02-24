@@ -1,0 +1,90 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'eprescribe/styles/stylesheet.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>{% block title %}{% endblock %}</title>
+    <script src="{% static 'eprescribe/js/script.js' %}" type="text/javascript"></script>
+  </head>
+  <body>
+  {% if user.is_authenticated %}
+    <div class="sidebar">
+      <div class="sidebar-brand">
+        <h3>
+          <span class="fas fa-laptop-medical"></span>
+          E-Prescribe</h3>
+      </div>
+      <div class="menu">
+        <br>
+        <br>
+        {% if user.is_admin or user.is_doctor %}
+        <div class="item">
+          <a href="{% url 'medprac-list' %}"class="sub-btn"><i class="fas fa-clinic-medical"></i>Medical Practices</a>
+        </div>
+        {% endif %}
+        {% if user.is_pharmacist %}
+        <div class="item">
+          <a href="{% url 'pharmacy-list' %}"class="sub-btn"><i class="fas fa-clinic-medical"></i>Medical Practices</a>
+        </div>
+        {% endif %}
+        {% if user.is_admin or user.is_doctor %}
+        <div class="item">
+          <a href="{% url 'doctor-list' %}" class="sub-btn"><i class="fas fa-user-doctor"></i>Doctor</a>
+        </div>
+        {% endif %}
+        <div class="item">
+          <a class="sub-btn" href="{% url 'patient-list' %}"><i class="fas fa-hospital-user"></i>Patient</a>
+        </div>
+        {% if user.is_admin or user.is_pharmacist %}
+        <div class="item"><a href="{% url 'pharmacist-list' %}"><i class="fas fa-user-nurse"></i>Pharmacist</a> </div>
+        {% endif %}
+        {% if user.is_admin %}
+        <div class="item">
+          <a class="sub-btn" href="{% url 'province-list' %}"><i class="fas fa-toolbox"></i>Configuration </a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="main-content">
+      <header>
+        <h4>
+        </h4>
+
+        {% comment %} top right {% endcomment %}
+
+          <div class="user-wrapper">
+            <img src="{% static 'eprescribe/images/user.png' %}" width="40px" height="40px" alt="">
+            <div>
+              
+                <h6>{{user.username}}</h6>
+
+                {% if user.is_admin %}
+                  <small>Admin</small>
+                {% elif user.is_doctor %}
+                  <small>Doctor</small>
+                {% elif user.is_pharmacist %}
+                  <small>Pharmacist</small>
+                {% else %}
+                  <small>Patient</small>
+                {% endif %} <br/>
+              <a href="{% url 'logout' %}">LOGOUT</a>
+            </div>
+          </div>
+
+{% endif %}
+      </header><br/>
+        {% block body %}
+        {% endblock %}
+        
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+ </body>
+</html>

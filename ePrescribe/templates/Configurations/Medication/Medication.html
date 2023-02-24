@@ -1,0 +1,46 @@
+{% extends 'ePrescribe\components\header.html' %}
+
+{% block body %}
+        <a href="{% url 'province-list' %}"><button class="btn btn-success">Province</button></a>
+        <a href="{% url 'city-list' %}"><button class="btn btn-success">City</button></a>
+        <a href="{% url 'suburb-list' %}"><button class="btn btn-success">Suburb</button></a>
+        <a href="{% url 'act-ing-list' %}"><button class="btn btn-success">Active Ingredients</button></a>
+        <a href="{% url 'dosage-list' %}"><button class="btn btn-success">Dosage</button></a>
+        <a href="{% url 'medication-create' %}"><button class="btn btn-primary">Add Medications</button></a>
+        <a href="{% url 'ICD10-list' %}"><button class="btn btn-success">ICD10</button></a>
+
+    <div class="container">
+    {% for msg in messages %}
+        <div class="bg-success text-white">
+            <p class="text-center box-sizing">{{msg}}</p>
+        </div>
+        <br><br>
+    {% endfor %}
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <th>Name</th>
+            <th>Active Ingredient</th>
+            <th>Schedule</th>
+            <th>Strength</th>
+            <th>Dosage</th>
+            <th>Action</th>
+
+            <tbody>
+            {% for medication in all_medications %}
+                <tr>
+                    <td>{{medication.name}}</td>
+                    <td>{{medication.active_ingridients}}</td>
+                    <td>{{medication.schedule}}</td>
+                    <td>{{medication.strength}}{{medication.units}}</td>
+                    <td>{{medication.dosage_form}}</td>
+                    <td>
+                        <a href="{% url 'medication-update' medication.id %}" class="btn btn-info">Edit</a>
+                        <a href="{% url 'medication-delete' medication.id %}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    </div>
+{% endblock %}

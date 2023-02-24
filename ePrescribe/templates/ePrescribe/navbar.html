@@ -1,0 +1,21 @@
+<!--{% extends "ePrescribe/components/header.html" %}-->
+{% load static %}
+
+<!--{% block nav %}-->
+<div class="main-content">
+  <header>
+    <h4>
+        <span class="fa fa-bars"></span>
+      Dashboard
+    </h4>
+    <div class="user-wrapper">
+      <img src="{% static 'eprescribe/images/user.png' %}" width="40px" height="40px" alt="">
+      <div>
+        <h6>Thabiso Molefe</h6>
+        <small>Admin</small>
+      </div>
+    </div>
+  </header>
+  {% include 'ePrescribe/dashboard/dashboard.html' %}
+</div>
+<!--{% endblock %}-->

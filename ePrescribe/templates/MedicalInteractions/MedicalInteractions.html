@@ -1,0 +1,45 @@
+{% extends 'ePrescribe\components\header.html' %}
+
+{% block body %}
+    {% for msg in messages %}
+        <div class="bg-success text-white">
+            <p class="text-center box-sizing">{{msg}}</p>
+        </div>
+        <br><br>
+    {% endfor %}
+    <div class="patient_action">
+        <a href="{% url 'patient-list' %}"><button class="btn btn-success">Patient</button></a>
+      <a href="{% url 'medhist-create' %}" class="btn btn-success">Medical History</a>
+        <a href="{% url 'med-rec-create' %}" class="btn btn-success">Medical Record</a>
+        <a href="{% url 'prescription-list' %}" class="btn btn-success"> Prescription</a>
+        <a href="{% url 'med-int-create' %}" class="btn btn-primary">Add Medical Interactions</a>
+        <a href="{% url 'cont-ind-list' %}" class="btn btn-success"> Contradictions</a>
+    </div>
+    <br>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <th>Doctor</th>
+        <th>Patient</th>
+        <th>Medicine Name(1)</th>
+        <th>Medicine Name(2)</th>
+        <th>Reasons</th>
+        <th>Action</th>
+
+        <tbody>
+            {% for medint in all_MedicalInteractions %}
+                <tr>
+                    <td>{{medint.doctor_id}}</td>
+                    <td>{{medint.patient_id}}</td>
+                    <td>{{medint.medicine_id1}}</td>
+                    <td>{{medint.medicine_id2}}</td>
+                    <td>{{medint.reasons}}</td>
+                    <td>
+                        <a href="{% url 'med-int-update' medint.id %}" class="btn btn-info">Edit</a>
+                        <a href="{% url 'med-int-delete' medint.id %}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+{% endblock %}

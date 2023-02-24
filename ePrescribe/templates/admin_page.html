@@ -1,0 +1,166 @@
+
+{% extends 'ePrescribe\components\header.html' %}
+
+{% block title %}Admin{% endblock %}
+
+
+{% block body %}
+
+    <div id="spacing">
+        <h2 class="text-center">Admin Panel</h3>
+    </div>
+
+    {% if user.is_admin %}
+    <div class="row col-md-10" style="margin: auto">
+        <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
+            <div class="card card-cascade wider">
+                <div class="card-body text-center">
+        
+                <h5 class="font-weight-bold blue-text">
+                    <a href={% url 'medprac-list' %}>medical practices</a>
+                </h5>
+        
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
+            <div class="card card-cascade wider">
+                <div class="card-body text-center">
+        
+                <h5 class="font-weight-bold blue-text">
+                    <a href={% url 'doctor-list' %}> Doctors</a>
+                </h5>
+        
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
+            <div class="card card-cascade wider">
+                <div class="card-body text-center">
+        
+                <h5 class="font-weight-bold blue-text">
+                    <a href={% url 'pharmacy-list' %}>Pharmacies</a>
+                </h5>
+        
+                </div>
+            </div>
+        </div>
+
+
+            
+        <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
+            <div class="card card-cascade wider">
+                <div class="card-body text-center">
+        
+                <h5 class="font-weight-bold blue-text">
+                    <a href={% url 'pharmacist-list' %}>Pharmacist</a>
+                </h5>
+        
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
+            <div class="card card-cascade wider">
+                <div class="card-body text-center">
+        
+                <h5 class="font-weight-bold blue-text">
+                    <a href={% url 'med-rec-list' %}>Medical Records</a>
+                </h5>
+        
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
+            <div class="card card-cascade wider">
+                <div class="card-body text-center">
+        
+                <h5 class="font-weight-bold blue-text">
+                    <a href={% url 'patient-list' %}>Patient</a>
+                </h5>
+        
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
+            <div class="card card-cascade wider">
+                <div class="card-body text-center">
+        
+                <h5 class="font-weight-bold blue-text">
+                    <a href={% url 'medhist-list' %}>Medical History</a>
+                </h5>
+        
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
+            <div class="card card-cascade wider">
+                <div class="card-body text-center">
+        
+                <h5 class="font-weight-bold blue-text">
+                    <a href={% url 'act-ing-list' %}>Active Ingridients</a>
+                </h5>
+        
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
+            <div class="card card-cascade wider">
+                <div class="card-body text-center">
+        
+                <h5 class="font-weight-bold blue-text">
+                    <a href={% url 'ICD10-list' %}>ICD10 and Diagnosis</a>
+                </h5>
+        
+                </div>
+            </div>
+        </div>
+
+            
+        <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
+            <div class="card card-cascade wider">
+                <div class="card-body text-center">
+        
+                <h5 class="font-weight-bold blue-text">
+                    <a href={% url 'cont-ind-list' %}>Contra Indications</a>
+                </h5>
+        
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
+            <div class="card card-cascade wider">
+                <div class="card-body text-center">
+
+                <h5 class="font-weight-bold blue-text">
+                    <a href={% url 'med-int-list' %}>Medical Interactions</a>
+                </h5>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+
+        <p>Access Restricted</p>
+        <a href="{% url 'index'  %}"><button>Home</button></a>
+    {% endif %}
+
+{% endblock %}

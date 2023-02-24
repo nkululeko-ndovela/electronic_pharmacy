@@ -1,0 +1,38 @@
+{% extends 'ePrescribe\components\header.html' %}
+
+{% block body %}
+        <a href="{% url 'province-create' %}"><button class="btn btn-primary">Add Province</button></a>
+        <a href="{% url 'city-list' %}"><button class="btn btn-success">City</button></a>
+        <a href="{% url 'suburb-list' %}"><button class="btn btn-success">Suburb</button></a>
+        <a href="{% url 'act-ing-list' %}"><button class="btn btn-success">Active Ingredients</button></a>
+        <a href="{% url 'dosage-list' %}"><button class="btn btn-success">Dosage</button></a>
+        <a href="{% url 'medication-list' %}"><button class="btn btn-success">Medications</button></a>
+        <a href="{% url 'ICD10-list' %}"><button class="btn btn-success">ICD10</button></a>
+
+    <div class="container">
+    {% for msg in messages %}
+        <div class="bg-success text-white">
+            <p class="text-center box-sizing">{{msg}}</p>
+        </div>
+        <br><br>
+    {% endfor %}
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <th>Name</th>
+            <th>Action</th>
+
+            <tbody>
+            {% for province in all_provinces %}
+                <tr>
+                    <td>{{province.name}}</td>
+                    <td>
+                        <a href="{% url 'province-update' province.id %}" class="btn btn-info">Edit</a>
+                        <a href="{% url 'province-delete' province.id %}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    </div>
+{% endblock %}

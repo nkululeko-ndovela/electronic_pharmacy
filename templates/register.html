@@ -1,0 +1,80 @@
+{% extends 'ePrescribe\components\header.html' %}
+
+{% block body %}
+<section class=" text-center text-lg-start">
+  <style>
+    .rounded-t-5 {
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+    }
+
+    @media (min-width: 992px) {
+      .rounded-tr-lg-0 {
+        border-top-right-radius: 0;
+      }
+
+      .rounded-bl-lg-5 {
+        border-bottom-left-radius: 0.5rem;
+      }
+    }
+  </style>
+
+
+  <body>
+    <div class="content">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6 contents">
+            <div class="row justify-content-center">
+              <div class="col-md-12">
+                <div class="form-block">
+                    <div class="mb-4">
+                        <h1>Create Account</h1>
+                  </div>
+                    <span class="mb-0 text-muted">
+                  {% if msg %}
+                      {{ msg | safe }}
+                 
+                  {% endif %}
+                </span>
+                  <form  method="post">
+                      <span class="text-error bg-danger">{{ form.errors }}</span>
+                      {% csrf_token %}
+                    <div class="form-group first">
+                      <label for="username">Username</label>
+                        {{ form.username }}
+                    </div>
+                    <div class="form-group first">
+                      <label for="email">Email</label>
+                        {{ form.email}}
+                    </div>
+                    <div class="form-group last mb-4">
+                      <label for="password">Password</label>
+                        {{ form.password1 }}
+                    </div>
+                    <div class="form-group last mb-4">
+                      <label for="password">confirm Password</label>
+                        {{ form.password2 }}
+                    </div>
+                    <input type="submit"  value="Register" class="btn btn-pill text-white btn-block btn-primary">
+                  
+                    <p>Already have an account? <a href="{% url 'login_view' %}">Login</a></p>
+                  </form>
+                  <br>
+                  <br>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+</section>
+              
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'ePrescribe\components\header.html' %}
+
+{% block body %}
+<h3>Are you sure you want to delete?</h3>
+
+<div >
+
+<form method="post">{% csrf_token %}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+
+    <button type="submit" class="btn btn-danger">yes, Delete</button>
+</form>
+    <a href="{% url 'doctor-list' %}" class="btn btn-success"> Cancel</a>
+</div>
+{% endblock %}
